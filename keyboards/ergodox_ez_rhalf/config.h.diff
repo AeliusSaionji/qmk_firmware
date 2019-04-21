@@ -1,0 +1,30 @@
+--- ../ergodox_ez/config.h	2019-04-18 11:38:54.465478565 -0400
++++ config.h	2019-04-20 23:46:58.753461035 -0400
+@@ -30,10 +30,12 @@
+ #define DESCRIPTION     QMK keyboard firmware for Ergodox EZ
+ 
+ /* key matrix size */
+-#define MATRIX_ROWS 14
+-#define MATRIX_ROWS_PER_SIDE (MATRIX_ROWS / 2)
++#define MATRIX_ROWS 7
+ #define MATRIX_COLS 6
+ 
++#define MATRIX_ROW_PINS { B0, B1, B2, B3, D2, D3, C6 }
++#define MATRIX_COL_PINS { F0, F1, F4, F5, F6, F7 }
++
+ #define MOUSEKEY_INTERVAL       20
+ #define MOUSEKEY_DELAY          0
+ #define MOUSEKEY_TIME_TO_MAX    60
+@@ -104,10 +106,10 @@
+ // RGB backlight
+ #define DRIVER_ADDR_1 0b1110100
+ #define DRIVER_ADDR_2 0b1110111
+-#define DRIVER_COUNT 2
++#define DRIVER_COUNT 1
+ #define DRIVER_1_LED_TOTAL 24
+ #define DRIVER_2_LED_TOTAL 24
+-#define DRIVER_LED_TOTAL DRIVER_1_LED_TOTAL + DRIVER_2_LED_TOTAL
++#define DRIVER_LED_TOTAL DRIVER_1_LED_TOTAL
+ 
+ // #define RGBLIGHT_COLOR_LAYER_0 0x00, 0x00, 0xFF
+ /* #define RGBLIGHT_COLOR_LAYER_1 0x00, 0x00, 0xFF */

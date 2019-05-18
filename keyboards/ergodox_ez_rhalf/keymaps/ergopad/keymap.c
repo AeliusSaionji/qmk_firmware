@@ -71,23 +71,34 @@ void matrix_init_user(void) {
 #endif
 };
 
-static uint16_t key_check;
+static bool key_check;
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	switch (keycode) {
 		case SPACE_MOD:
+			// if SPACE_MOD is pressed
 			if (record->event.pressed) {
-				key_check = 1;
+				// activate layer 1
 				layer_on(LTR1);
+				// reset key detection
+				key_check = 0;
 			}
-			else {
+			// if SPACE_MOD is released
+			else if (!record->event.pressed) {
+				// deactivate layer 1
 				layer_off(LTR1);
-				if (key_check == 1) {
+				// if no other keys were detected while SPACE_MOD was pressed
+				if (key_check == 0) {
+					// tap space
 					tap_code(KC_SPC);
 				}
 			}
 			return false;
 		default:
-			key_check = 0;
+			// if ANY key is pressed (but not released) at any time
+			if (record->event.pressed) {
+				// key has been detected, set true
+				key_check = 1;
+			}
 			return true;
 	}
 }

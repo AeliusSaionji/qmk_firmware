@@ -13,54 +13,54 @@ enum custom_keycodes {
 // Tabularize//\*\*/\zs
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [LTR0] = LAYOUT_ergodox(
-  KC_NO, /**/             KC_NO, /**/          KC_NO, /**/       KC_NO, /**/     KC_NO, /**/    KC_NO, /**/    KC_BSPC,
-  KC_NO, /**/             KC_F, /**/           KC_A, /**/        KC_R, /**/      KC_W, /**/     KC_P, /**/     KC_NO,
-  /**/                    KC_O, /**/           KC_E, /**/        KC_H, /**/      KC_T, /**/     KC_D, /**/     KC_TAB,
-  TT(NMPD), /**/          KC_U, /**/           KC_I, /**/        KC_N, /**/      KC_S, /**/     KC_Y, /**/     KC_ENT,
-  /**/                    /**/                 KC_DOT, /**/      KC_COMMA, /**/  KC_NO, /**/    KC_NO, /**/    KC_NO,
-  TG(NMPD), /**/          TG(NAVI),
-  KC_PGUP, /**/
-  KC_PGDN, /**/           OSM(MOD_LSFT), /**/  SPACE_MOD
-),
-[LTR1] = LAYOUT_ergodox(
-  KC_ASTG, /**/           KC_NO, /**/          KC_NO, /**/       KC_NO, /**/     KC_NO, /**/    KC_NO, /**/    RESET,
-  KC_NO, /**/             KC_NO, /**/          KC_NO, /**/       KC_B, /**/      KC_M, /**/     KC_J, /**/     KC_NO,
-  /**/                    KC_Q, /**/           KC_Z, /**/        KC_L, /**/      KC_C, /**/     KC_V, /**/     KC_NO,
-  KC_NO, /**/             KC_NO, /**/          KC_NO, /**/       KC_K, /**/      KC_G, /**/     KC_X, /**/     KC_NO,
-  /**/                    /**/                 KC_NO, /**/       KC_NO, /**/     KC_NO, /**/    KC_NO, /**/    KC_NO,
-  RGB_TOG, /**/           KC_NO,
-  RGB_HUI, /**/
-  RGB_HUD, /**/           KC_NO, /**/          KC_NO
-),
-[NMPD] = LAYOUT_ergodox(
-  KC_NO, /**/             KC_NO, /**/          KC_NO, /**/       KC_SLSH, /**/   KC_ASTR, /**/  KC_MINS, /**/  KC_NO,
-  KC_NO, /**/             KC_NO, /**/          KC_7, /**/        KC_8, /**/      KC_9, /**/     KC_PLUS, /**/  KC_NO,
-  /**/                    KC_NO, /**/          KC_4, /**/        KC_5, /**/      KC_6, /**/     KC_NO, /**/    KC_NO,
-  TG(NMPD), /**/          KC_NO, /**/          KC_1, /**/        KC_2, /**/      KC_3, /**/     KC_NO, /**/    KC_NO,
-  /**/                    /**/                 KC_0, /**/        KC_DOT, /**/    KC_NO, /**/    KC_NO, /**/    KC_NO,
-  TG(NMPD), /**/          KC_NO,
-  KC_NO, /**/
-  KC_NO, /**/             KC_NO, /**/          LT(NAVI, KC_SPC)
-),
-[NAVI] = LAYOUT_ergodox(
-  KC_MUTE, /**/           KC_NO, /**/          KC_NO, /**/       KC_NO, /**/     KC_NO, /**/    KC_NO, /**/    KC_NO,
-  KC_VOLU, /**/           KC_HOME, /**/        KC_END, /**/      KC_NO, /**/     KC_NO, /**/    KC_NO, /**/    KC_NO,
-  /**/                    KC_PGUP, /**/        KC_LEFT, /**/     KC_DOWN, /**/   KC_UP, /**/    KC_RGHT, /**/  KC_NO,
-  KC_VOLD, /**/           KC_PGDN, /**/        KC_MPRV, /**/     KC_MPLY, /**/   KC_NO, /**/    KC_MNXT, /**/  KC_NO,
-  /**/                    /**/                 KC_NO, /**/       KC_NO, /**/     KC_NO, /**/    KC_NO, /**/    KC_NO,
-  KC_NO, /**/             TG(NAVI),
-  KC_NO, /**/
-  KC_NO, /**/             KC_NO, /**/          KC_NO
-),
-[SYMB] = LAYOUT_ergodox(
-  KC_NO, /**/             KC_NO, /**/          KC_NO, /**/       KC_NO, /**/     KC_NO, /**/    KC_NO, /**/    KC_NO,
-  KC_NO, /**/             KC_QUES, /**/        KC_AMPR, /**/     KC_ASTR, /**/   KC_COLN, /**/  KC_SCLN, /**/  KC_NO,
-  /**/                    KC_SLSH, /**/        KC_EXLM, /**/     KC_MINS, /**/   KC_AT, /**/    KC_UNDS, /**/  KC_NO,
-  KC_NO, /**/             KC_DQUO, /**/        KC_NO, /**/       KC_NO, /**/     KC_NO, /**/    KC_NO, /**/    KC_NO,
-  /**/                    /**/                 KC_NO, /**/       KC_NO, /**/     KC_NO, /**/    KC_NO, /**/    KC_NO,
+  KC_F1, /**/             KC_F2, /**/     KC_F3, /**/             KC_F4, /**/    KC_F5, /**/    KC_F6, /**/    KC_BSPC,
+  OSM(MOD_LCTL), /**/     KC_F, /**/      KC_A, /**/              KC_R, /**/     KC_W, /**/     KC_P, /**/     KC_ESC,
+  /**/                    KC_O, /**/      KC_E, /**/              KC_H, /**/     KC_T, /**/     KC_D, /**/     KC_TAB,
+  OSM(MOD_LALT), /**/     KC_U, /**/      KC_I, /**/              KC_N, /**/     KC_S, /**/     KC_Y, /**/     KC_ENT,
+  /**/                    /**/            LT(SYMB, KC_DOT), /**/  KC_COMM, /**/  KC_NO, /**/    KC_NO, /**/    KC_NO,
   KC_NO, /**/             KC_NO,
   KC_NO, /**/
-  KC_NO, /**/             KC_NO, /**/          KC_NO
+  KC_LWIN, /**/           TT(NMPD), /**/  SPACE_MOD
+),
+[LTR1] = LAYOUT_ergodox(
+  KC_F7, /**/             KC_F8, /**/     KC_F9, /**/             KC_F10, /**/   KC_F11, /**/   KC_F12, /**/   KC_TRNS,
+  KC_NO, /**/             KC_EXLM, /**/   KC_QUOT, /**/           KC_B, /**/     KC_M, /**/     KC_J, /**/     KC_NO,
+  /**/                    KC_Q, /**/      KC_Z, /**/              KC_L, /**/     KC_C, /**/     KC_V, /**/     KC_NO,
+  KC_NO, /**/             KC_QUES, /**/   KC_COMM, /**/           KC_K, /**/     KC_G, /**/     KC_X, /**/     KC_NO,
+  /**/                    /**/            KC_NO, /**/             KC_NO, /**/    KC_NO, /**/    KC_NO, /**/    KC_NO,
+  RGB_TOG, /**/           KC_NO,
+  RGB_HUI, /**/
+  RGB_HUD, /**/           TT(NAVI), /**/  KC_NO
+),
+[SYMB] = LAYOUT_ergodox(
+  KC_NO, /**/             KC_CIRC, /**/   KC_DLR, /**/            KC_SLSH, /**/  KC_BSLS, /**/  KC_NO, /**/    KC_TRNS,
+  KC_NO, /**/             KC_GRV, /**/    KC_AMPR, /**/           KC_LBRC, /**/  KC_RBRC, /**/  KC_PERC, /**/  KC_NO,
+  /**/                    KC_EQL, /**/    KC_ASTR, /**/           KC_LPRN, /**/  KC_RPRN, /**/  KC_SCLN, /**/  KC_NO,
+  KC_NO, /**/             KC_MINS, /**/   KC_AT, /**/             KC_LABK, /**/  KC_RABK, /**/  KC_HASH, /**/  KC_NO,
+  /**/                    /**/            KC_NO, /**/             KC_NO, /**/    KC_NO, /**/    KC_NO, /**/    KC_NO,
+  KC_NO, /**/             KC_NO,
+  KC_NO, /**/
+  KC_NO, /**/             KC_NO, /**/     KC_NO
+),
+[NMPD] = LAYOUT_ergodox(
+  KC_NO, /**/             KC_NO, /**/     KC_NO, /**/             KC_PSLS, /**/  KC_PAST, /**/  KC_PMNS, /**/  KC_TRNS,
+  KC_NO, /**/             KC_NO, /**/     KC_7, /**/              KC_8, /**/     KC_9, /**/     KC_PPLS, /**/  KC_NO,
+  /**/                    KC_0, /**/      KC_4, /**/              KC_5, /**/     KC_6, /**/     KC_NO, /**/    KC_NO,
+  KC_NO, /**/             KC_NO, /**/     KC_1, /**/              KC_2, /**/     KC_3, /**/     KC_NO, /**/    KC_NO,
+  /**/                    /**/            KC_TRNS, /**/           KC_TRNS, /**/  KC_NO, /**/    KC_NO, /**/    KC_NO,
+  KC_NO, /**/             KC_NO,
+  KC_NO, /**/
+  KC_NO, /**/             TG(NMPD), /**/  LT(NAVI, KC_SPC)
+),
+[NAVI] = LAYOUT_ergodox(
+  KC_MUTE, /**/           KC_NO, /**/     KC_NO, /**/             KC_NO, /**/    KC_NO, /**/    KC_NO, /**/    KC_NO,
+  KC_VOLU, /**/           KC_HOME, /**/   KC_END, /**/            KC_NO, /**/    KC_NO, /**/    KC_NO, /**/    KC_NO,
+  /**/                    KC_PGUP, /**/   KC_LEFT, /**/           KC_DOWN, /**/  KC_UP, /**/    KC_RGHT, /**/  KC_NO,
+  KC_VOLD, /**/           KC_PGDN, /**/   KC_MPRV, /**/           KC_MPLY, /**/  KC_NO, /**/    KC_MNXT, /**/  KC_NO,
+  /**/                    /**/            KC_NO, /**/             KC_NO, /**/    KC_NO, /**/    KC_NO, /**/    KC_NO,
+  KC_NO, /**/             KC_NO,
+  KC_NO, /**/
+  RESET, /**/             TG(NAVI), /**/  KC_NO
 ),
 };
 

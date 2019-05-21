@@ -1,9 +1,4 @@
-//#undef DEBOUNCE
-//#define DEBOUNCE 5
-//#define TAP_CODE_DELAY 10
-//#define PERMISSIVE_HOLD
-//#undef TAPPING_TERM
-//#define TAPPING_TERM 6000
 #define NO_AUTO_SHIFT_NUMERIC
+//#define NO_AUTO_SHIFT_SPECIAL
 #undef TAPPING_TOGGLE
 #define TAPPING_TOGGLE 2

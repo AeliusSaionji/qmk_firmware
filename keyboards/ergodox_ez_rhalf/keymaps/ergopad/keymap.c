@@ -54,7 +54,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 [NAVI] = LAYOUT_ergodox(
   KC_MUTE, /**/           KC_NO, /**/     KC_NO, /**/             KC_NO, /**/    KC_NO, /**/    KC_NO, /**/    KC_NO,
-  KC_VOLU, /**/           KC_HOME, /**/   KC_END, /**/            KC_NO, /**/    KC_NO, /**/    KC_NO, /**/    KC_NO,
+  KC_VOLU, /**/           KC_NO, /**/     KC_HOME, /**/           KC_PGDN, /**/  KC_PGUP, /**/  KC_END, /**/   KC_NO,
   /**/                    KC_PGUP, /**/   KC_LEFT, /**/           KC_DOWN, /**/  KC_UP, /**/    KC_RGHT, /**/  KC_NO,
   KC_VOLD, /**/           KC_PGDN, /**/   KC_MPRV, /**/           KC_MPLY, /**/  KC_NO, /**/    KC_MNXT, /**/  KC_NO,
   /**/                    /**/            KC_NO, /**/             KC_NO, /**/    KC_NO, /**/    KC_NO, /**/    KC_NO,

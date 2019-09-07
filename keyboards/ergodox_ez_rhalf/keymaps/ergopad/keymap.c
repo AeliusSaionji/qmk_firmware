@@ -19,7 +19,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /**/                    KC_O, /**/      KC_E, /**/              KC_H, /**/     KC_T, /**/     KC_D, /**/     KC_TAB,
   OSM(MOD_LALT), /**/     KC_U, /**/      KC_I, /**/              KC_N, /**/     KC_S, /**/     KC_Y, /**/     KC_ENT,
   /**/                    /**/            LT(SYMB, KC_DOT), /**/  KC_COMM, /**/  KC_NO, /**/    KC_NO, /**/    KC_RSHIFT,
-  KC_NO, /**/             TG(GAME),
+  KC_PSCR, /**/           TG(GAME),
   KC_ASTG, /**/
   OSM(MOD_LGUI), /**/     TT(NMPD), /**/  SPACE_MOD
 ),
@@ -56,8 +56,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [NAVI] = LAYOUT_ergodox(
   KC_MUTE, /**/           KC_NO, /**/     KC_NO, /**/             KC_NO, /**/    KC_NO, /**/    KC_NO, /**/    KC_NO,
   KC_VOLU, /**/           KC_NO, /**/     KC_HOME, /**/           KC_PGDN, /**/  KC_PGUP, /**/  KC_END, /**/   KC_NO,
-  /**/                    KC_PGUP, /**/   KC_LEFT, /**/           KC_DOWN, /**/  KC_UP, /**/    KC_RGHT, /**/  KC_NO,
-  KC_VOLD, /**/           KC_PGDN, /**/   KC_MPRV, /**/           KC_MPLY, /**/  KC_NO, /**/    KC_MNXT, /**/  KC_NO,
+  /**/                    KC_NO, /**/     KC_LEFT, /**/           KC_DOWN, /**/  KC_UP, /**/    KC_RGHT, /**/  KC_NO,
+  KC_VOLD, /**/           KC_NO, /**/     KC_MPRV, /**/           KC_MPLY, /**/  KC_NO, /**/    KC_MNXT, /**/  KC_NO,
   /**/                    /**/            KC_NO, /**/             KC_NO, /**/    KC_NO, /**/    KC_NO, /**/    KC_NO,
   KC_NO, /**/             KC_NO,
   KC_NO, /**/
@@ -70,7 +70,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_NO, /**/             KC_NO, /**/     KC_NO, /**/             KC_NO, /**/    KC_NO, /**/    KC_NO, /**/    KC_NO,
   /**/                    /**/            KC_NO, /**/             KC_NO, /**/    KC_NO, /**/    KC_NO, /**/    KC_NO,
   KC_NO, /**/             TG(GAME),
-  KC_NO, /**/
+  G(A(KC_PSCR)), /**/
   LWIN(KC_G), /**/        KC_NO, /**/     KC_NO
 ),
 };

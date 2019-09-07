@@ -9,6 +9,7 @@ enum custom_keycodes {
 #define SYMB 2 // symbols
 #define NMPD 3 // numpad
 #define NAVI 4 // navigation
+#define GAME 5 // gaming
 
 // Tabularize//\*\*/\zs
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -17,10 +18,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   OSM(MOD_LCTL), /**/     KC_F, /**/      KC_A, /**/              KC_R, /**/     KC_W, /**/     KC_P, /**/     KC_ESC,
   /**/                    KC_O, /**/      KC_E, /**/              KC_H, /**/     KC_T, /**/     KC_D, /**/     KC_TAB,
   OSM(MOD_LALT), /**/     KC_U, /**/      KC_I, /**/              KC_N, /**/     KC_S, /**/     KC_Y, /**/     KC_ENT,
-  /**/                    /**/            LT(SYMB, KC_DOT), /**/  KC_COMM, /**/  KC_NO, /**/    KC_NO, /**/    KC_NO,
-  KC_NO, /**/             KC_NO,
-  KC_NO, /**/
-  KC_LWIN, /**/           TT(NMPD), /**/  SPACE_MOD
+  /**/                    /**/            LT(SYMB, KC_DOT), /**/  KC_COMM, /**/  KC_NO, /**/    KC_NO, /**/    KC_RSHIFT,
+  KC_NO, /**/             TG(GAME),
+  KC_ASTG, /**/
+  OSM(MOD_LGUI), /**/     TT(NMPD), /**/  SPACE_MOD
 ),
 [LTR1] = LAYOUT_ergodox(
   KC_F7, /**/             KC_F8, /**/     KC_F9, /**/             KC_F10, /**/   KC_F11, /**/   KC_F12, /**/   KC_TRNS,
@@ -61,6 +62,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_NO, /**/             KC_NO,
   KC_NO, /**/
   RESET, /**/             TG(NAVI), /**/  KC_NO
+),
+[GAME] = LAYOUT_ergodox(
+  KC_NO, /**/             KC_NO, /**/     KC_NO, /**/             KC_NO, /**/    KC_NO, /**/    KC_NO, /**/    KC_NO,
+  KC_NO, /**/             KC_NO, /**/     KC_NO, /**/             KC_W, /**/     KC_NO, /**/    KC_NO, /**/    KC_NO,
+  /**/                    KC_NO, /**/     KC_A, /**/              KC_S, /**/     KC_D, /**/     KC_NO, /**/    KC_NO,
+  KC_NO, /**/             KC_NO, /**/     KC_NO, /**/             KC_NO, /**/    KC_NO, /**/    KC_NO, /**/    KC_NO,
+  /**/                    /**/            KC_NO, /**/             KC_NO, /**/    KC_NO, /**/    KC_NO, /**/    KC_NO,
+  KC_NO, /**/             TG(GAME),
+  KC_NO, /**/
+  LWIN(KC_G), /**/        KC_NO, /**/     KC_NO
 ),
 };
 

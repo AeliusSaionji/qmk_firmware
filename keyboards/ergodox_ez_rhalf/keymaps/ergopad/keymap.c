@@ -18,7 +18,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   OSM(MOD_LCTL), /**/     KC_F, /**/      KC_A, /**/              KC_R, /**/     KC_W, /**/     KC_P, /**/     KC_ESC,
   /**/                    KC_O, /**/      KC_E, /**/              KC_H, /**/     KC_T, /**/     KC_D, /**/     KC_TAB,
   OSM(MOD_LALT), /**/     KC_U, /**/      KC_I, /**/              KC_N, /**/     KC_S, /**/     KC_Y, /**/     KC_ENT,
-  /**/                    /**/            LT(SYMB, KC_DOT), /**/  KC_COMM, /**/  KC_NO, /**/    KC_NO, /**/    KC_RSHIFT,
+  /**/                    /**/            LT(SYMB, KC_DOT), /**/  KC_NO, /**/    KC_NO, /**/    KC_NO, /**/    KC_RSHIFT,
   KC_PSCR, /**/           TG(GAME),
   KC_ASTG, /**/
   OSM(MOD_LGUI), /**/     TT(NMPD), /**/  SPACE_MOD
@@ -46,31 +46,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [NMPD] = LAYOUT_ergodox(
   KC_NO, /**/             KC_NO, /**/     KC_NO, /**/             KC_PSLS, /**/  KC_PAST, /**/  KC_PMNS, /**/  KC_TRNS,
   KC_NO, /**/             KC_NO, /**/     KC_7, /**/              KC_8, /**/     KC_9, /**/     KC_PPLS, /**/  KC_NO,
-  /**/                    KC_0, /**/      KC_4, /**/              KC_5, /**/     KC_6, /**/     KC_NO, /**/    KC_NO,
-  KC_NO, /**/             KC_NO, /**/     KC_1, /**/              KC_2, /**/     KC_3, /**/     KC_NO, /**/    KC_NO,
+  /**/                    KC_0, /**/      KC_4, /**/              KC_5, /**/     KC_6, /**/     KC_PERC, /**/  KC_NO,
+  KC_NO, /**/             KC_NO, /**/     KC_1, /**/              KC_2, /**/     KC_3, /**/     KC_DLR, /**/   KC_NO,
   /**/                    /**/            KC_TRNS, /**/           KC_TRNS, /**/  KC_NO, /**/    KC_NO, /**/    KC_NO,
   KC_NO, /**/             KC_NO,
   KC_NO, /**/
   KC_NO, /**/             TG(NMPD), /**/  LT(NAVI, KC_SPC)
 ),
 [NAVI] = LAYOUT_ergodox(
-  KC_MUTE, /**/           KC_NO, /**/     KC_NO, /**/             KC_NO, /**/    KC_NO, /**/    KC_NO, /**/    KC_NO,
+  KC_MUTE, /**/           KC_F1, /**/     KC_F2, /**/             KC_F3, /**/    KC_F4, /**/    KC_F6, /**/    KC_NO,
   KC_VOLU, /**/           KC_NO, /**/     KC_HOME, /**/           KC_PGDN, /**/  KC_PGUP, /**/  KC_END, /**/   KC_NO,
   /**/                    KC_NO, /**/     KC_LEFT, /**/           KC_DOWN, /**/  KC_UP, /**/    KC_RGHT, /**/  KC_NO,
   KC_VOLD, /**/           KC_NO, /**/     KC_MPRV, /**/           KC_MPLY, /**/  KC_NO, /**/    KC_MNXT, /**/  KC_NO,
-  /**/                    /**/            KC_NO, /**/             KC_NO, /**/    KC_NO, /**/    KC_NO, /**/    KC_NO,
+  /**/                    /**/            KC_LABK, /**/           KC_NO, /**/    KC_NO, /**/    KC_RABK, /**/  KC_NO,
   KC_NO, /**/             KC_NO,
   KC_NO, /**/
   RESET, /**/             TG(NAVI), /**/  KC_NO
 ),
 [GAME] = LAYOUT_ergodox(
-  KC_NO, /**/             KC_NO, /**/     KC_NO, /**/             KC_NO, /**/    KC_NO, /**/    KC_NO, /**/    KC_NO,
+  KC_NO, /**/             KC_1, /**/      KC_2, /**/              KC_3, /**/     KC_4, /**/     KC_5, /**/     KC_NO,
   KC_NO, /**/             KC_NO, /**/     KC_NO, /**/             KC_W, /**/     KC_NO, /**/    KC_NO, /**/    KC_NO,
   /**/                    KC_NO, /**/     KC_A, /**/              KC_S, /**/     KC_D, /**/     KC_NO, /**/    KC_NO,
   KC_NO, /**/             KC_NO, /**/     KC_NO, /**/             KC_NO, /**/    KC_NO, /**/    KC_NO, /**/    KC_NO,
   /**/                    /**/            KC_NO, /**/             KC_NO, /**/    KC_NO, /**/    KC_NO, /**/    KC_NO,
-  KC_NO, /**/             TG(GAME),
-  G(A(KC_PSCR)), /**/
+  G(A(KC_PSCR)), /**/     TG(GAME),
+  KC_NO, /**/
   LWIN(KC_G), /**/        KC_NO, /**/     KC_NO
 ),
 };
@@ -83,6 +83,7 @@ void matrix_init_user(void) {
 };
 
 static bool key_check;
+static uint16_t key_timer;
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	switch (keycode) {
 		case SPACE_MOD:
@@ -92,13 +93,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 				layer_on(LTR1);
 				// reset key detection
 				key_check = 0;
+				// start timer
+				key_timer = timer_read();
 			}
 			// if SPACE_MOD is released
 			else if (!record->event.pressed) {
 				// deactivate layer 1
 				layer_off(LTR1);
 				// if no other keys were detected while SPACE_MOD was pressed
-				if (key_check == 0) {
+				// AND if SPACE_MOD was held for shorter than 300ms
+				if (key_check == 0 && timer_elapsed(key_timer) < 300) {
 					// tap space
 					tap_code(KC_SPC);
 				}

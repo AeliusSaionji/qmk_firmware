@@ -1,7 +1,11 @@
 #include QMK_KEYBOARD_H
 
 enum custom_keycodes {
-    SPACE_MOD = SAFE_RANGE
+    SPACE_MOD = SAFE_RANGE,
+    DOT_MOD,
+    NUM_MOD,
+    GAME_ON,
+    GAME_OFF
 };
 
 #define LTR0 0 // letters
@@ -18,10 +22,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   OSM(MOD_LCTL), /**/     KC_F, /**/      KC_A, /**/              KC_R, /**/     KC_W, /**/     KC_P, /**/     KC_ESC,
   /**/                    KC_O, /**/      KC_E, /**/              KC_H, /**/     KC_T, /**/     KC_D, /**/     KC_TAB,
   OSM(MOD_LALT), /**/     KC_U, /**/      KC_I, /**/              KC_N, /**/     KC_S, /**/     KC_Y, /**/     KC_ENT,
-  /**/                    /**/            LT(SYMB, KC_DOT), /**/  KC_NO, /**/    KC_NO, /**/    KC_NO, /**/    KC_RSHIFT,
-  KC_PSCR, /**/           TG(GAME),
+  /**/                    /**/            DOT_MOD, /**/           KC_ASDN, /**/    KC_ASUP, /**/    KC_ASRP, /**/    KC_RSHIFT,
+  KC_PSCR, /**/           GAME_ON,
   KC_ASTG, /**/
-  OSM(MOD_LGUI), /**/     TT(NMPD), /**/  SPACE_MOD
+  OSM(MOD_LGUI), /**/     NUM_MOD, /**/  SPACE_MOD
 ),
 [LTR1] = LAYOUT_ergodox(
   KC_F7, /**/             KC_F8, /**/     KC_F9, /**/             KC_F10, /**/   KC_F11, /**/   KC_F12, /**/   KC_TRNS,
@@ -69,7 +73,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /**/                    KC_NO, /**/     KC_A, /**/              KC_S, /**/     KC_D, /**/     KC_NO, /**/    KC_NO,
   KC_NO, /**/             KC_NO, /**/     KC_NO, /**/             KC_NO, /**/    KC_NO, /**/    KC_NO, /**/    KC_NO,
   /**/                    /**/            KC_NO, /**/             KC_NO, /**/    KC_NO, /**/    KC_NO, /**/    KC_NO,
-  G(A(KC_PSCR)), /**/     TG(GAME),
+  G(A(KC_PSCR)), /**/     GAME_OFF,
   KC_NO, /**/
   LWIN(KC_G), /**/        KC_NO, /**/     KC_NO
 ),
@@ -106,6 +110,68 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 					// tap space
 					tap_code(KC_SPC);
 				}
+			}
+			return false;
+		case DOT_MOD:
+			// if DOT_MOD is pressed
+			if (record->event.pressed) {
+				// activate layer 2
+				layer_on(SYMB);
+				// reset key detection
+				key_check = 0;
+				// start timer
+				key_timer = timer_read();
+			}
+			// if DOT_MOD is released
+			else if (!record->event.pressed) {
+				// deactivate layer 2
+				layer_off(SYMB);
+				// if no other keys were detected while DOT_MOD was pressed
+				// AND if DOT_MOD was held for shorter than 300ms
+				if (key_check == 0 && timer_elapsed(key_timer) < 300) {
+					// tap period
+					tap_code(KC_DOT);
+				}
+			}
+			return false;
+		case NUM_MOD:
+			// if NUM_MOD is pressed
+			if (record->event.pressed) {
+				// activate layer 3
+				layer_on(NMPD);
+				// reset key detection
+				key_check = 0;
+				// start timer
+				key_timer = timer_read();
+			}
+			// if NUM_MOD is released
+			else if (!record->event.pressed) {
+				// deactivate layer 3
+				layer_off(NMPD);
+				// if no other keys were detected while NUM_MOD was pressed
+				// AND if NUM_MOD was held for shorter than 300ms
+				if (key_check == 0 && timer_elapsed(key_timer) < 300) {
+					// tap period
+					tap_code(KC_0);
+				}
+			}
+			return false;
+		case GAME_ON:
+			// if GAME_ON is pressed
+			if (record->event.pressed) {
+				// activate layer 5
+				layer_on(GAME);
+				// turn off autoshift
+				autoshift_disable();
+			}
+			return false;
+		case GAME_OFF:
+			// if GAME_OFF is pressed
+			if (record->event.pressed) {
+				// deactivate layer 5
+				layer_off(GAME);
+				// turn on autoshift
+				autoshift_enable();
 			}
 			return false;
 		default:

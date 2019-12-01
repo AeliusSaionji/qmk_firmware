@@ -68,11 +68,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   RESET, /**/             TG(NAVI), /**/  KC_NO
 ),
 [GAME] = LAYOUT_ergodox(
-  KC_NO, /**/             KC_1, /**/      KC_2, /**/        KC_3, /**/     KC_4, /**/      KC_5, /**/     KC_NO,
-  KC_NO, /**/             KC_E, /**/      KC_Q, /**/        KC_UP, /**/    KC_D, /**/      KC_NO, /**/    KC_NO,
-  /**/                    KC_R, /**/      KC_LEFT, /**/     KC_DOWN, /**/  KC_RIGHT, /**/  KC_NO, /**/    KC_NO,
-  KC_NO, /**/             KC_NO, /**/     KC_NO, /**/       KC_NO, /**/    KC_NO, /**/     KC_NO, /**/    KC_NO,
-  /**/                    /**/            KC_NO, /**/       KC_NO, /**/    KC_NO, /**/     KC_NO, /**/    KC_NO,
+  KC_NO, /**/             KC_1, /**/      KC_2, /**/        KC_3, /**/     KC_4, /**/      KC_5, /**/     KC_BSPC,
+  KC_NO, /**/             KC_E, /**/      KC_Q, /**/        KC_UP, /**/    KC_D, /**/      KC_NO, /**/    KC_ESC,
+  /**/                    KC_R, /**/      KC_LEFT, /**/     KC_DOWN, /**/  KC_RIGHT, /**/  KC_NO, /**/    KC_TAB,
+  KC_NO, /**/             KC_W, /**/      KC_NO, /**/       KC_NO, /**/    KC_NO, /**/     KC_NO, /**/    KC_ENT,
+  /**/                    /**/            KC_NO, /**/       KC_NO, /**/    KC_NO, /**/     KC_NO, /**/    KC_RSHIFT,
   G(A(KC_PSCR)), /**/     GAME_OFF,
   KC_NO, /**/
   LWIN(KC_G), /**/        KC_S, /**/      KC_A

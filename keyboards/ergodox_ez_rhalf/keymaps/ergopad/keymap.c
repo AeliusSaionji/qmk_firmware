@@ -69,8 +69,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 [GAME] = LAYOUT_ergodox(
   KC_NO, /**/             KC_1, /**/      KC_2, /**/        KC_3, /**/     KC_4, /**/      KC_5, /**/     KC_BSPC,
-  KC_NO, /**/             KC_E, /**/      KC_Q, /**/        KC_UP, /**/    KC_D, /**/      KC_NO, /**/    KC_ESC,
-  /**/                    KC_R, /**/      KC_LEFT, /**/     KC_DOWN, /**/  KC_RIGHT, /**/  KC_NO, /**/    KC_TAB,
+  KC_NO, /**/             KC_E, /**/      KC_NO, /**/       KC_UP, /**/    KC_D, /**/      KC_NO, /**/    KC_ESC,
+  /**/                    KC_R, /**/      KC_LEFT, /**/     KC_DOWN, /**/  KC_RIGHT, /**/  KC_Q, /**/     KC_TAB,
   KC_NO, /**/             KC_W, /**/      KC_NO, /**/       KC_NO, /**/    KC_NO, /**/     KC_NO, /**/    KC_ENT,
   /**/                    /**/            KC_NO, /**/       KC_NO, /**/    KC_NO, /**/     KC_NO, /**/    KC_RSHIFT,
   G(A(KC_PSCR)), /**/     GAME_OFF,

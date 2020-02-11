@@ -22,20 +22,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   OSM(MOD_LCTL), /**/     KC_F, /**/        KC_A, /**/        KC_R, /**/     KC_W, /**/      KC_P, /**/     KC_ESC,
   /**/                    KC_O, /**/        KC_E, /**/        KC_H, /**/     KC_T, /**/      KC_D, /**/     KC_TAB,
   OSM(MOD_LALT), /**/     KC_U, /**/        KC_I, /**/        KC_N, /**/     KC_S, /**/      KC_Y, /**/     KC_ENT,
-  /**/                    /**/              DOT_MOD, /**/     KC_ASDN, /**/  KC_ASUP, /**/   KC_ASRP, /**/  KC_RSHIFT,
+  /**/                    /**/              DOT_MOD, /**/     KC_NO, /**/    KC_NO, /**/     KC_NO, /**/    KC_RSHIFT,
   KC_PSCR, /**/           GAME_ON,
-  KC_ASTG, /**/
+  RGB_MOD, /**/
   OSM(MOD_LGUI), /**/     NUM_MOD, /**/     SPACE_MOD
 ),
 [LTR1] = LAYOUT_ergodox(
   KC_F7, /**/             KC_F8, /**/       KC_F9, /**/       KC_F10, /**/   KC_F11, /**/    KC_F12, /**/   KC_TRNS,
-  KC_NO, /**/             KC_EXLM, /**/     KC_QUOT, /**/     KC_B, /**/     KC_M, /**/      KC_J, /**/     KC_NO,
-  /**/                    KC_Q, /**/        KC_Z, /**/        KC_L, /**/     KC_C, /**/      KC_V, /**/     KC_NO,
+  KC_NO, /**/             KC_EXLM, /**/     KC_QUOT, /**/     KC_B, /**/     KC_M, /**/      KC_J, /**/     KC_PLUS,
+  /**/                    KC_Q, /**/        KC_Z, /**/        KC_L, /**/     KC_C, /**/      KC_V, /**/     KC_MINS,
   KC_NO, /**/             KC_QUES, /**/     KC_COMM, /**/     KC_K, /**/     KC_G, /**/      KC_X, /**/     KC_NO,
   /**/                    /**/              KC_NO, /**/       KC_NO, /**/    KC_NO, /**/     KC_NO, /**/    KC_NO,
-  RGB_TOG, /**/           KC_NO,
-  RGB_HUI, /**/
-  RGB_HUD, /**/           TT(NAVI), /**/    KC_NO
+  KC_NO, /**/             KC_NO,
+  RGB_TOG, /**/
+  KC_NO, /**/             TT(NAVI), /**/    KC_NO
 ),
 [SYMB] = LAYOUT_ergodox(
   KC_NO, /**/             KC_CIRC, /**/     KC_DLR, /**/      KC_SLSH, /**/  KC_BSLS, /**/   KC_NO, /**/    KC_TRNS,
@@ -45,7 +45,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /**/                    /**/              KC_NO, /**/       KC_NO, /**/    KC_NO, /**/     KC_NO, /**/    KC_NO,
   KC_NO, /**/             KC_NO,
   KC_NO, /**/
-  KC_NO, /**/             KC_NO, /**/       KC_NO
+  KC_LEAD, /**/           KC_NO, /**/       KC_NO
 ),
 [NMPD] = LAYOUT_ergodox(
   KC_NO, /**/             KC_NO, /**/       KC_NO, /**/       KC_PSLS, /**/  KC_PAST, /**/   KC_PMNS, /**/  KC_TRNS,
@@ -54,7 +54,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_NO, /**/             KC_NO, /**/       KC_1, /**/        KC_2, /**/     KC_3, /**/      KC_DLR, /**/   KC_NO,
   /**/                    /**/              KC_TRNS, /**/     KC_TRNS, /**/  KC_NO, /**/     KC_NO, /**/    KC_NO,
   KC_NO, /**/             KC_NO,
-  KC_NO, /**/
+  RGB_HUI, /**/
   KC_NO, /**/             TG(NMPD), /**/    LT(NAVI, KC_SPC)
 ),
 [NAVI] = LAYOUT_ergodox(
@@ -65,7 +65,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /**/                    /**/              KC_LABK, /**/     KC_NO, /**/    KC_NO, /**/     KC_RABK, /**/  KC_NO,
   KC_NO, /**/             KC_NO,
   KC_NO, /**/
-  RESET, /**/             TG(NAVI), /**/    KC_NO
+  KC_NO, /**/             TG(NAVI), /**/    KC_NO
 ),
 [GAME] = LAYOUT_ergodox(
   KC_NO, /**/             KC_1, /**/        KC_2, /**/        KC_3, /**/     KC_4, /**/      KC_5, /**/     KC_BSPC,
@@ -129,7 +129,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 				// if no other keys were detected while DOT_MOD was pressed
 				// AND if DOT_MOD was held for shorter than 300ms
 				if (key_check == 0 && timer_elapsed(key_timer) < 300) {
-					// tap period
 					tap_code(KC_DOT);
 				}
 			}
@@ -151,7 +150,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 				// if no other keys were detected while NUM_MOD was pressed
 				// AND if NUM_MOD was held for shorter than 300ms
 				if (key_check == 0 && timer_elapsed(key_timer) < 300) {
-					// tap period
 					tap_code(KC_0);
 				}
 			}
@@ -182,6 +180,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 			}
 			return true;
 	}
+}
+
+// Leader definitions
+LEADER_EXTERNS();
+void matrix_scan_user(void) {
+	LEADER_DICTIONARY() {
+		leading = false;
+		leader_end();
+		SEQ_FIVE_KEYS(KC_R, KC_E, KC_S, KC_E, KC_T) {
+			reset_keyboard();
+    }
+  }
 }
 
 // Runs whenever there is a layer state change.

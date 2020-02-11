@@ -14,6 +14,7 @@ enum custom_keycodes {
 #define NMPD 3 // numpad
 #define NAVI 4 // navigation
 #define GAME 5 // gaming
+#define FKEY 6 // function keys
 
 // Tabularize//\*\*/\zs
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -22,7 +23,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   OSM(MOD_LCTL), /**/     KC_F, /**/        KC_A, /**/        KC_R, /**/     KC_W, /**/      KC_P, /**/     KC_ESC,
   /**/                    KC_O, /**/        KC_E, /**/        KC_H, /**/     KC_T, /**/      KC_D, /**/     KC_TAB,
   OSM(MOD_LALT), /**/     KC_U, /**/        KC_I, /**/        KC_N, /**/     KC_S, /**/      KC_Y, /**/     KC_ENT,
-  /**/                    /**/              DOT_MOD, /**/     KC_NO, /**/    KC_NO, /**/     KC_NO, /**/    KC_RSHIFT,
+  /**/                    /**/              DOT_MOD, /**/     MO(6), /**/    KC_NO, /**/     KC_NO, /**/    KC_RSHIFT,
   KC_PSCR, /**/           GAME_ON,
   RGB_MOD, /**/
   OSM(MOD_LGUI), /**/     NUM_MOD, /**/     SPACE_MOD
@@ -76,6 +77,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   G(A(KC_PSCR)), /**/     GAME_OFF,
   KC_NO, /**/
   LWIN(KC_G), /**/        KC_S, /**/        KC_A
+),
+[FKEY] = LAYOUT_ergodox(
+  KC_NO, /**/             KC_NO, /**/       KC_F10, /**/      KC_F11, /**/   KC_F12, /**/    KC_NO, /**/    KC_NO,
+  KC_NO, /**/             KC_NO, /**/       KC_F7, /**/       KC_F8, /**/    KC_F9, /**/     KC_NO, /**/    KC_NO,
+  /**/                    KC_NO, /**/       KC_F4, /**/       KC_F5, /**/    KC_F6, /**/     KC_NO, /**/    KC_NO,
+  KC_NO, /**/             KC_NO, /**/       KC_F1, /**/       KC_F2, /**/    KC_F3, /**/     KC_NO, /**/    KC_NO,
+  /**/                    /**/              KC_NO, /**/       KC_NO, /**/    KC_NO, /**/     KC_NO, /**/    KC_NO,
+  KC_NO, /**/             KC_NO,
+  KC_NO, /**/
+  KC_NO, /**/             KC_NO, /**/       KC_NO
 ),
 };
 

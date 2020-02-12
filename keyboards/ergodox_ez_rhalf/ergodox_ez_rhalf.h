@@ -7,7 +7,29 @@
 #include "i2c_master.h"
 #include <util/delay.h>
 
+#define CPU_PRESCALE(n) (CLKPR = 0x80, CLKPR = (n))
+#define CPU_16MHz       0x00
+
+// I2C aliases and register addresses (see "mcp23018.md")
+#define I2C_ADDR        0b0100000
+#define I2C_ADDR_WRITE  ( (I2C_ADDR<<1) | I2C_WRITE )
+#define I2C_ADDR_READ   ( (I2C_ADDR<<1) | I2C_READ  )
+#define IODIRA          0x00            // i/o direction register
+#define IODIRB          0x01
+#define GPPUA           0x0C            // GPIO pull-up resistor register
+#define GPPUB           0x0D
+#define GPIOA           0x12            // general purpose i/o port register (write modifies OLAT)
+#define GPIOB           0x13
+#define OLATA           0x14            // output latch register
+#define OLATB           0x15
+
+extern i2c_status_t mcp23018_status;
+#define ERGODOX_EZ_I2C_TIMEOUT 100
+
+void init_ergodox(void);
 void ergodox_blink_all_leds(void);
+uint8_t init_mcp23018(void);
+uint8_t ergodox_left_leds_update(void);
 
 #ifndef LED_BRIGHTNESS_LO
 #define LED_BRIGHTNESS_LO       15
@@ -62,10 +84,30 @@ inline void ergodox_led_all_set(uint8_t n)
     ergodox_right_led_3_set(n);
 }
 
+#ifdef ORYX_CONFIGURATOR
+enum ergodox_ez_keycodes {
+    LED_LEVEL = SAFE_RANGE,
+    TOGGLE_LAYER_COLOR,
+    EZ_SAFE_RANGE,
+};
+#endif
+
+typedef union {
+  uint32_t raw;
+  struct {
+    uint8_t    led_level :3;
+    bool       disable_layer_led   :1;
+    bool       rgb_matrix_enable   :1;
+  };
+} keyboard_config_t;
+
+extern keyboard_config_t keyboard_config;
+
 /*
  *  RIGHT HAND
  */
 #define LAYOUT_ergodox(                                         \
+                                                                \
         k07,k08,k09,k0A,k0B,k0C,k0D,                            \
         k17,k18,k19,k1A,k1B,k1C,k1D,                            \
             k28,k29,k2A,k2B,k2C,k2D,                            \
@@ -90,6 +132,7 @@ inline void ergodox_led_all_set(uint8_t n)
  *  RIGHT HAND
  */
 #define LAYOUT_ergodox_80(                                      \
+                                                                \
         k07,k08,k09,k0A,k0B,k0C,k0D,                            \
         k17,k18,k19,k1A,k1B,k1C,k1D,                            \
             k28,k29,k2A,k2B,k2C,k2D,                            \

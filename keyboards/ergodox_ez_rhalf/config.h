@@ -43,6 +43,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define DIODE_DIRECTION COL2ROW
 
+#define DEBOUNCE 10
+
 #define TAPPING_TOGGLE  1
 
 /* define if matrix has ghost */

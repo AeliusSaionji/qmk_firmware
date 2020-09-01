@@ -22,7 +22,7 @@ enum custom_keycodes {
 // Tabularize//\*\*/\zs
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [LTR0] = LAYOUT_ergodox(
-  KC_DEL, /**/            KC_NO, /**/       KC_NO, /**/       KC_NO, /**/      KC_NO, /**/     KC_INS, /**/   KC_BSPC,
+  KC_LSFT, /**/           KC_1, /**/        KC_2, /**/        KC_3, /**/       KC_4, /**/      KC_INS, /**/   KC_BSPC,
   OSM(MOD_LCTL), /**/     KC_F, /**/        KC_A, /**/        KC_R, /**/       KC_W, /**/      KC_P, /**/     KC_ESC,
   /**/                    KC_O, /**/        KC_E, /**/        KC_H, /**/       KC_T, /**/      KC_D, /**/     KC_TAB,
   OSM(MOD_LALT), /**/     KC_U, /**/        KC_I, /**/        KC_N, /**/       KC_S, /**/      KC_Y, /**/     KC_ENT,
@@ -52,7 +52,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_NO, /**/             KC_NO, /**/       KC_NO
 ),
 [NMPD] = LAYOUT_ergodox(
-  KC_NO, /**/             KC_NO, /**/       KC_NO, /**/       KC_PSLS, /**/    KC_PAST, /**/   KC_PMNS, /**/  KC_TRNS,
+  KC_NO, /**/             KC_NO, /**/       KC_DLR, /**/      KC_PSLS, /**/    KC_PAST, /**/   KC_PMNS, /**/  KC_TRNS,
   KC_NO, /**/             KC_NO, /**/       KC_7, /**/        KC_8, /**/       KC_9, /**/      KC_PPLS, /**/  KC_NO,
   /**/                    KC_0, /**/        KC_4, /**/        KC_5, /**/       KC_6, /**/      KC_EQL,  /**/  KC_PDOT,
   KC_NO, /**/             KC_NO, /**/       KC_1, /**/        KC_2, /**/       KC_3, /**/      KC_HASH, /**/  KC_COMM,

@@ -40,7 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /**/                    /**/              KC_NO, /**/       KC_NO, /**/                KC_NO, /**/                KC_NO, /**/        KC_NO,
   KC_NO, /**/             KC_NO,
   RGB_TOG, /**/
-  KC_NO, /**/             TT(NAVI), /**/    KC_NO
+  MEH(KC_4), /**/         TT(NAVI), /**/    KC_NO
 ),
 [SYMB] = LAYOUT_ergodox(
   KC_NO, /**/             KC_CIRC, /**/     KC_DLR, /**/      KC_SLSH, /**/              KC_BSLS, /**/              KC_NO, /**/        KC_TRNS,
